@@ -14,9 +14,9 @@ public class MyLocaleResolver implements LocaleResolver {
         Locale locale = Locale.getDefault();
         //获取请求的语言参数
         String l = httpServletRequest.getParameter("l");
-        //0为语言信息，1为区域信息
-        String[] s = l.split("_");
         if (!StringUtils.isEmpty(l)) {
+            //0为语言信息，1为区域信息
+            String[] s = l.split("_");
             locale = new Locale(s[0],s[1]);
         }
         return locale;
