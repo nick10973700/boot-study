@@ -75,13 +75,16 @@
 									<td th:text="${#dates.format(emp.birth,'yyyy-MM-dd HH:mm')}"></td>
 									<td>
 										<a class="btn btn-primary" th:href="@{/emp/}+${emp.id}">修改</a>
-										<button class="btn btn-danger">删除</button>
+										<button th:attr="delUri=@{/emp/}+${emp.id}" class="btn btn-danger delBtn">删除</button>
 									</td>
 								</tr>
 							</tbody>
 						</table>
 					</div>
 				</main>
+				<form id="delForm" method="post">
+					<input type="hidden" name="_method" value="delete">
+				</form>
 			</div>
 		</div>
 
@@ -97,7 +100,11 @@
 		<script>
 			feather.replace()
 		</script>
-
+		<script>
+			$(".delBtn").click(function () {
+				$("#delForm").attr("action",$(this).attr("delUri")).submit();
+			});
+		</script>
 		<!-- Graphs -->
 		<script type="text/javascript" src="asserts/js/Chart.min.js" th:src="@{/asserts/js/Chart.min.js}"></script>
 		<script>
