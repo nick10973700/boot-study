@@ -20,8 +20,9 @@ public class MyMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
+        //springboot2.0的自定义拦截器会拦截静态资源，需要屏蔽静态资源路径
         registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**")
-        .excludePathPatterns("/","/index","/user/login");
+        .excludePathPatterns("/","/index","/user/login","/asserts/**");
     }
 
     @Bean
